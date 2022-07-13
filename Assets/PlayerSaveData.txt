@@ -1,0 +1,1 @@
+{"S_Health":100,"S_Energy":100,"S_HealthPacks":0,"S_EnergyPacks":0,"S_ScrollsCount":0}
