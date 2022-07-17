@@ -73,3 +73,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2006728e3d122b945a8486abc78a2587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+  mousePositionManager: {fileID: 5189599689759369451, guid: d403fa1e62930d14ba25661eb0adc412, type: 3}

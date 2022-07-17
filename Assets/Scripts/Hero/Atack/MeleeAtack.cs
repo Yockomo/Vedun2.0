@@ -5,45 +5,42 @@ using UnityEngine;
 
 public class MeleeAtack : MonoBehaviour
 {
-    [SerializeField] private MousePositionManager mousePositionManager;
-
-    private StarterAssetsInputs input;
-    private AnimatorManager animatorManager;
+    private StarterAssetsInputs _input;
+    private AnimatorManager _animatorManager;
+    private Rotator _rotationBehaviour;
+    private BackwardRunHandler _backwardRunHandler;
 
     private void Start()
     {
-        input = GetComponent<StarterAssetsInputs>();
-        animatorManager = GetComponent<AnimatorManager>();
+        _input = GetComponent<StarterAssetsInputs>();
+        _animatorManager = GetComponent<AnimatorManager>();
+        _rotationBehaviour = GetComponent<Rotator>();
+        _backwardRunHandler = GetComponent<BackwardRunHandler>();
     }
 
     void Update()
     {
-        Atack();
+        HandleAtack();
     }
 
-    private void Atack()
+    private void HandleAtack()
     {
-        if (input.atack && animatorManager.isGrounded())
+        if (_input.atack && _animatorManager.isGrounded())
         {
-            animatorManager.SetAtack(true);
-            mousePositionManager.LookAtMouseDirection();
-            animatorManager.CheckBackwardRun();
+            _rotationBehaviour.LookAtMouseDirection();
+            SetAtackStateAndCheckBackwardRun(true);
         }
     }
 
     //to reset state in first frame of Atack animation by AnimationEvent
     public void resetAtackState()
     {
-        animatorManager.SetAtack(false);
-        resetRotationState();
-    }
-        
-    private void resetRotationState()
-    {        
-        mousePositionManager.StopLookingAtMouseDirection();
-        animatorManager.ResetBackwardRun();
+        SetAtackStateAndCheckBackwardRun(false);
     }
 
-    public MousePositionManager GetMouseManager() 
-        => this.mousePositionManager;
+    private void SetAtackStateAndCheckBackwardRun(bool atackState)
+    {
+        _animatorManager.SetAtack(atackState);
+        _backwardRunHandler.CheckBackwardRun();
+    }
 }
