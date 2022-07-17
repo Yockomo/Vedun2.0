@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c45991f68d31754599458b770fd6a62, type: 3}
+  m_Name: BasicPlayerStats
+  m_EditorClassIdentifier: 
+  Level: 1
+  Strength: 1
+  Agility: 1
+  Health: 100
+  Energy: 50
+  Speed: 2.5
+  Defence: 1
+  Luck: 1
