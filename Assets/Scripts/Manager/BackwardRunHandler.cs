@@ -1,16 +1,14 @@
 using UnityEngine;
-using Zenject;
 
-public class BackwardRunHandler : MonoBehaviour
+public class BackwardRunHandler 
 {
     private MousePositionManager _mousePositionManager;
     private AnimatorManager _animatorManager;
     private const int AngleOfView = 90;
 
-    [Inject]
-    private void Construct(MousePositionManager mouseManager, AnimatorManager animatorManager)
+    public BackwardRunHandler(Transform playerTransform, AnimatorManager animatorManager)
     {
-        _mousePositionManager = mouseManager;
+        _mousePositionManager = new MousePositionManager(playerTransform);
         _animatorManager = animatorManager;
     }
 

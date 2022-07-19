@@ -2444,8 +2444,8 @@ GameObject:
   - component: {fileID: 4798104673400631554}
   - component: {fileID: 4798104673400631608}
   - component: {fileID: 3812771554279255935}
-  - component: {fileID: 7235175358641288824}
-  - component: {fileID: 1809245050374202850}
+  - component: {fileID: 400264146}
+  - component: {fileID: 400264145}
   m_Layer: 3
   m_Name: Ivan
   m_TagString: Player
@@ -2555,7 +2555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212772854674117790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d1d6e6cfafb6c4fbf07b1e5352270a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7235175358641288824
+--- !u!114 &400264146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2768,10 +2768,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9212772854674117790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb294a0490533894595c8340d57d85f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f5d5e7f7b441594bac781305b717e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1809245050374202850
+--- !u!114 &400264145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2780,6 +2780,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 9212772854674117790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d132f51e53661d419edac4180c2323f, type: 3}
+  m_Script: {fileID: 11500000, guid: cba9a5f62db66cb498bab641b407766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  speedChangeRate: 10
+  rotationSmoothTime: 0.12
+  jumpHeight: 1.2
+  gravity: -15
+  jumpTimeout: 0.3
+  fallTimeout: 0.15
+  groundedOffset: 0.14
+  groundedRadius: 0.28
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1

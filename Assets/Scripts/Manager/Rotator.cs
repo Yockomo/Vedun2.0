@@ -1,20 +1,14 @@
 using UnityEngine;
-using Zenject;
 
-public class Rotator : MonoBehaviour
+public class Rotator 
 {
     private MousePositionManager _mousePositionManager;
     private Transform _playerTransform;
 
-    [Inject]
-    private void Construct(MousePositionManager mousePositionManager)
+    public Rotator(Transform playerTransform)
     {
-        _mousePositionManager = mousePositionManager;
-    }
-
-    private void Start()
-    {
-        _playerTransform = GetComponent<Transform>();
+        _playerTransform = playerTransform;
+        _mousePositionManager = new MousePositionManager(_playerTransform);
     }
 
     public void LookAtMouseDirection()

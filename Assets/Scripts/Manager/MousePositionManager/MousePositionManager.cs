@@ -1,25 +1,13 @@
-using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Zenject;
 
-public class MousePositionManager : MonoBehaviour
+public class MousePositionManager 
 {
-    [SerializeField] private LayerMask aimColliderLayerMask;
-
-    private ThirdPersonController _playerController;
     private Transform _playerTransform;
-    private RaycastHit _raycastHit;
 
-    [Inject]
-    private void Construct(ThirdPersonController playerController)
+    public MousePositionManager(Transform playerTransform )
     {
-        _playerController = playerController;
-    }
-
-    private void Start()
-    {
-        _playerTransform = _playerController.GetComponent<Transform>();
+        _playerTransform = playerTransform;
     }
 
     public Vector3 GetMousePosition()
@@ -30,9 +18,9 @@ public class MousePositionManager : MonoBehaviour
     private Vector3 GetRaycastHit()
     {
         Ray ray = Camera.main.ScreenPointToRay(CalculateMousePosition());
-        if (Physics.Raycast(ray, out _raycastHit, 999f, aimColliderLayerMask))
+        if (Physics.Raycast(ray, out var raycastHit, 999f))
         {
-            return _raycastHit.point;
+            return raycastHit.point;
         }
         return _playerTransform.forward;
     }

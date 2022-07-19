@@ -8,14 +8,14 @@ public class MeleeAtack : MonoBehaviour
     private StarterAssetsInputs _input;
     private AnimatorManager _animatorManager;
     private Rotator _rotationBehaviour;
-    private BackwardRunHandler _backwardRunHandler;
+    private BackwardRunHandler _backwardRunBehaviour;
 
     private void Start()
     {
         _input = GetComponent<StarterAssetsInputs>();
         _animatorManager = GetComponent<AnimatorManager>();
-        _rotationBehaviour = GetComponent<Rotator>();
-        _backwardRunHandler = GetComponent<BackwardRunHandler>();
+        _rotationBehaviour = new Rotator(transform);
+        _backwardRunBehaviour = new BackwardRunHandler(transform, _animatorManager);
     }
 
     void Update()
@@ -32,15 +32,15 @@ public class MeleeAtack : MonoBehaviour
         }
     }
 
+    private void SetAtackStateAndCheckBackwardRun(bool atackState)
+    {
+        _animatorManager.SetAtack(atackState);
+        _backwardRunBehaviour.CheckBackwardRun();
+    }
+
     //to reset state in first frame of Atack animation by AnimationEvent
     public void resetAtackState()
     {
         SetAtackStateAndCheckBackwardRun(false);
-    }
-
-    private void SetAtackStateAndCheckBackwardRun(bool atackState)
-    {
-        _animatorManager.SetAtack(atackState);
-        _backwardRunHandler.CheckBackwardRun();
     }
 }
