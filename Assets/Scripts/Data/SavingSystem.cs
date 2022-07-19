@@ -61,11 +61,14 @@ public class SavingSystem
 }
 public class PlayerData
 {
+    public int LevelData;
+    public int StrengthData;
+    public int AgilityData;
     public int HealthData;
     public int EnergyData;
-    public int DefenceData;
-    public int AttackData;
     public float SpeedData;
+    public int DefenceData;
+    public int LuckData;
     public int HealthPacksData;
     public int EnergyPacksData;
     public int ScrollsCountData;
