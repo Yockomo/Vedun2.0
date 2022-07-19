@@ -1,21 +1,21 @@
 using StarterAssets;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(StarterAssetsInputs),typeof(AnimatorManager))]
 
 public class MeleeAtack : MonoBehaviour
 {
+    public event Action OnAtackEventStart;
+    public event Action OnAtackEventEnd;
+
     private StarterAssetsInputs _input;
     private AnimatorManager _animatorManager;
-    private Rotator _rotationBehaviour;
-    private BackwardRunHandler _backwardRunBehaviour;
 
     private void Start()
     {
         _input = GetComponent<StarterAssetsInputs>();
         _animatorManager = GetComponent<AnimatorManager>();
-        _rotationBehaviour = new Rotator(transform);
-        _backwardRunBehaviour = new BackwardRunHandler(transform, _animatorManager);
     }
 
     void Update()
@@ -27,20 +27,36 @@ public class MeleeAtack : MonoBehaviour
     {
         if (_input.atack && _animatorManager.isGrounded())
         {
-            _rotationBehaviour.LookAtMouseDirection();
-            SetAtackStateAndCheckBackwardRun(true);
+            OnAtackEventStart?.Invoke();
+            SetAtackState();
         }
     }
 
-    private void SetAtackStateAndCheckBackwardRun(bool atackState)
+    private void SetAtackState()
     {
-        _animatorManager.SetAtack(atackState);
-        _backwardRunBehaviour.CheckBackwardRun();
+        _animatorManager.SetAtack();
     }
 
-    //to reset state in first frame of Atack animation by AnimationEvent
-    public void resetAtackState()
+    private void ResetAtackState()
     {
-        SetAtackStateAndCheckBackwardRun(false);
+        _animatorManager.ResetAtack();
+    }
+
+    public void NextComboAtack()
+    {
+        ResetAtackState();
+        _animatorManager.SetCombo();
+    }
+
+    private void ResetCombo()
+    {
+        _animatorManager.ResetCombo();
+    }
+
+    public void OffCombo()
+    {
+        OnAtackEventEnd?.Invoke();
+        ResetAtackState();
+        ResetCombo();
     }
 }

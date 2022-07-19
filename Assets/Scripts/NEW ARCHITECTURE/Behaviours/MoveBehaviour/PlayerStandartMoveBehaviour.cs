@@ -68,6 +68,8 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
                 Move();
                 break;
             case MoveState.ATACK:
+                //TODO выключать анимацию движения во время атаки
+                _animator.SetFloat(_animIDSpeed, 0);
                 break;
             case MoveState.PAUSE:
                 break;
@@ -185,5 +187,15 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
             QueryTriggerInteraction.Ignore);
 
         _animator.SetBool(_animIDGrounded, Grounded);
+    }
+
+    public void SetAtackState()
+    {
+        currentState = MoveState.ATACK;
+    }
+
+    public void SetDefaultState()
+    {
+        currentState = MoveState.DEFAULT;
     }
 }

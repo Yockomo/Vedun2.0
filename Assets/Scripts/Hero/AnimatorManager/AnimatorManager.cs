@@ -5,8 +5,7 @@ public class AnimatorManager : MonoBehaviour
     private Animator _animator;
 
     private readonly int _atack = Animator.StringToHash("Atack");
-    private readonly int _atackType = Animator.StringToHash("AtackType");
-    private readonly int _countOfAtackTypies = 3;
+    private readonly int _combo = Animator.StringToHash("Combo");
 
     private readonly int _axeThrow = Animator.StringToHash("AxeThrow"); 
     private readonly int _speed = Animator.StringToHash("Speed");
@@ -22,11 +21,24 @@ public class AnimatorManager : MonoBehaviour
         _backwardRunLayer = _animator.GetLayerIndex("BackWardRun");
     }
 
-    public void SetAtack(bool value)
+    public void SetAtack()
     {
-        if (value)
-            _animator.SetInteger(_atackType, Random.Range(0, _countOfAtackTypies));
-        _animator.SetBool(_atack, value);
+        _animator.SetTrigger(_atack);
+    }
+
+    public void ResetAtack()
+    {
+        _animator.ResetTrigger(_atack);
+    }
+
+    public void SetCombo()
+    {
+        _animator.SetTrigger(_combo);
+    }
+
+    public void ResetCombo()
+    {
+        _animator.ResetTrigger(_combo);
     }
 
     public void SetAxeThrow(bool value)
