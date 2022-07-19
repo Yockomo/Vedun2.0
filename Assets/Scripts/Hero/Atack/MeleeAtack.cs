@@ -1,49 +1,62 @@
 using StarterAssets;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(StarterAssetsInputs),typeof(AnimatorManager))]
 
 public class MeleeAtack : MonoBehaviour
 {
-    [SerializeField] private MousePositionManager mousePositionManager;
+    public event Action OnAtackEventStart;
+    public event Action OnAtackEventEnd;
 
-    private StarterAssetsInputs input;
-    private AnimatorManager animatorManager;
+    private StarterAssetsInputs _input;
+    private AnimatorManager _animatorManager;
 
     private void Start()
     {
-        input = GetComponent<StarterAssetsInputs>();
-        animatorManager = GetComponent<AnimatorManager>();
+        _input = GetComponent<StarterAssetsInputs>();
+        _animatorManager = GetComponent<AnimatorManager>();
     }
 
     void Update()
     {
-        Atack();
+        HandleAtack();
     }
 
-    private void Atack()
+    private void HandleAtack()
     {
-        if (input.atack && animatorManager.isGrounded())
+        if (_input.atack && _animatorManager.isGrounded())
         {
-            animatorManager.SetAtack(true);
-            mousePositionManager.LookAtMouseDirection();
-            animatorManager.CheckBackwardRun();
+            OnAtackEventStart?.Invoke();
+            SetAtackState();
         }
     }
 
-    //to reset state in first frame of Atack animation by AnimationEvent
-    public void resetAtackState()
+    private void SetAtackState()
     {
-        animatorManager.SetAtack(false);
-        resetRotationState();
-    }
-        
-    private void resetRotationState()
-    {        
-        mousePositionManager.StopLookingAtMouseDirection();
-        animatorManager.ResetBackwardRun();
+        _animatorManager.SetAtack();
     }
 
-    public MousePositionManager GetMouseManager() 
-        => this.mousePositionManager;
+    private void ResetAtackState()
+    {
+        _animatorManager.ResetAtack();
+    }
+
+    public void NextComboAtack()
+    {
+        ResetAtackState();
+        _animatorManager.SetCombo();
+    }
+
+    private void ResetCombo()
+    {
+        _animatorManager.ResetCombo();
+    }
+
+    public void OffCombo()
+    {
+        OnAtackEventEnd?.Invoke();
+        ResetAtackState();
+        ResetCombo();
+    }
 }

@@ -1,82 +1,49 @@
-using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MousePositionManager : MonoBehaviour
+public class MousePositionManager 
 {
-    [SerializeField] private StarterAssetsInputs input;
-    [SerializeField] private LayerMask aimColliderLayerMask;
-    [SerializeField] private float playerRotationSpeed = 5f;
+    private Transform _playerTransform;
 
-    private RaycastHit raycastHit;
-    private GameObject player;
-    private ThirdPersonController playerController;
-    private Vector3 MousePosition;
-
-    public float AngleBetweenMouseAndPlayer { get; set; }
-
-    private void Start()
+    public MousePositionManager(Transform playerTransform )
     {
-        player = input.gameObject;
-        playerController = player.GetComponent<ThirdPersonController>();
-    }
-
-    public float GetAngleBetweenMouseAndPlayer()
-    {
-        Vector2 vector = player.GetComponent<StarterAssets.StarterAssetsInputs>().move;
-        var second = new Vector3(player.transform.position.x, 0, player.transform.position.z) + new Vector3(vector.x, player.transform.position.y, vector.y);
-        Vector3 targetDir = second - player.transform.position;
-        float angle = Vector3.Angle(targetDir, player.transform.forward);
-        AngleBetweenMouseAndPlayer = angle;
-        return angle;
+        _playerTransform = playerTransform;
     }
 
     public Vector3 GetMousePosition()
     {
-        OnRaycastSystem();
-        return MousePosition;
+        return GetRaycastHit();
     }
 
-    private void OnRaycastSystem()
+    private Vector3 GetRaycastHit()
     {
         Ray ray = Camera.main.ScreenPointToRay(CalculateMousePosition());
-        if (Physics.Raycast(ray, out raycastHit, 999f, aimColliderLayerMask))
+        if (Physics.Raycast(ray, out var raycastHit, 999f))
         {
-            MousePosition = raycastHit.point;
+            return raycastHit.point;
         }
+        return _playerTransform.forward;
     }
 
     private Vector3 CalculateMousePosition()
     {
         Vector3 mousePos = Mouse.current.position.ReadValue();
-        mousePos.z = player.transform.position.z;
+        mousePos.z = _playerTransform.transform.position.z;
         return mousePos;
     }
 
-    public void LookAtMouseDirection() 
+    public float GetAngleBetweenMouseAndPlayer()
     {
-        GetMousePosition();
-        playerController.isAtacking = true;
-        player.transform.LookAt(new Vector3(MousePosition.x,player.transform.position.y,MousePosition.z));
-        GetAngleBetweenMouseAndPlayer();
+        Vector3 directionVector = CalculateDirectionVector();
+        float angle = Vector3.Angle(directionVector, _playerTransform.transform.forward);
+        return angle;
     }
 
-    public void SmoothLookAtMouseDirection()
+    private Vector3 CalculateDirectionVector()
     {
-        playerController.isAtacking = true;
-        var targetRotation = Quaternion.LookRotation(GetDirection() - player.transform.position);
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, playerRotationSpeed * Time.deltaTime);
-        GetAngleBetweenMouseAndPlayer();
-    }
-
-    private Vector3 GetDirection()
-    {
-        GetMousePosition();
-        return  new Vector3(MousePosition.x, player.transform.position.y, MousePosition.z);
-    }
-
-    public void StopLookingAtMouseDirection()
-    {
-        playerController.isAtacking = false;
+        Vector2 inputVector = _playerTransform.GetComponent<StarterAssets.StarterAssetsInputs>().move;
+        var second = new Vector3(_playerTransform.transform.position.x, 0, _playerTransform.transform.position.z)
+            + new Vector3(inputVector.x, _playerTransform.transform.position.y, inputVector.y);
+        return second - _playerTransform.transform.position;
     }
 }
