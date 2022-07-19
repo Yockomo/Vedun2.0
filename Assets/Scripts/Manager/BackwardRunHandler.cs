@@ -14,10 +14,10 @@ public class BackwardRunHandler
 
     public void CheckBackwardRun()
     {
-        if (_animatorManager.GetSpeed() > 0 && _animatorManager.isGrounded())
-        {
-            var backward = _mousePositionManager.GetAngleBetweenMouseAndPlayer() > AngleOfView;
-            _animatorManager.SetBackwardRun(backward);
-        }
+        //if (_animatorManager.GetSpeed() > 0 && _animatorManager.isGrounded())
+        //{
+        //    var backward = _mousePositionManager.GetAngleBetweenMouseAndPlayer() > AngleOfView;
+        //    _animatorManager.SetBackwardRun(backward);
+        //}
     }
 }

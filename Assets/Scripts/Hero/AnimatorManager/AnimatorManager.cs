@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimatorManager : MonoBehaviour
+public class AnimatorManager 
 {
     private Animator _animator;
 
@@ -13,12 +13,49 @@ public class AnimatorManager : MonoBehaviour
     private readonly int _grounded = Animator.StringToHash("Grounded");
     private readonly int _dead = Animator.StringToHash("IsDead");
 
-    private int _backwardRunLayer;
+    private readonly int _animIDSpeed = Animator.StringToHash("Speed");
+    private readonly int _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+    private readonly int _animIDGrounded = Animator.StringToHash("Grounded");
+    private readonly int _animIDJump = Animator.StringToHash("Jump");
+    private readonly int _doubleJump = Animator.StringToHash("DoubleJump");
+    private readonly int _animIDFreeFall = Animator.StringToHash("FreeFall");
 
-    private void Start()
+    //If someday backwardRun will be needed
+    /*private int _backwardRunLayer =_animator.GetLayerIndex("BackWardRun");*/
+
+    public AnimatorManager(Animator animator)
     {
-        _animator = GetComponent<Animator>();
-        _backwardRunLayer = _animator.GetLayerIndex("BackWardRun");
+        _animator = animator;
+    }
+
+    public void SetSpeedParameter(float value)
+    {
+        _animator.SetFloat(_animIDSpeed, value);
+    }
+
+    public void SetMotionSpeedParameter(float value)
+    {
+        _animator.SetFloat(_animIDMotionSpeed, value);
+    }
+
+    public void SetGrounded(bool value)
+    {
+        _animator.SetBool(_animIDGrounded, value);
+    }
+
+    public void SetJump(bool value)
+    {
+        _animator.SetBool(_animIDJump, value);
+    }
+
+    public void TriggerDoubleJump()
+    {
+        _animator.SetTrigger(_doubleJump);
+    }
+
+    public void SetFreeFall(bool value)
+    {
+        _animator.SetBool(_animIDFreeFall, value);
     }
 
     public void SetAtack()
@@ -71,9 +108,9 @@ public class AnimatorManager : MonoBehaviour
         return _animator.GetFloat(_speed);
     }
 
-    public void SetBackwardRun(bool value)
-    {
-        var layerWeight = value ? 1 : 0;
-        _animator.SetLayerWeight(_backwardRunLayer, layerWeight);
-    }
+    //public void SetBackwardRun(bool value)
+    //{
+    //    var layerWeight = value ? 1 : 0;
+    //    _animator.SetLayerWeight(_backwardRunLayer, layerWeight);
+    //}
 }

@@ -41,6 +41,7 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>
                 break;
             case MoveState.ATACK:
                 LookAtMouseDirection();
+                currentState = MoveState.PAUSE;
                 break;
             case MoveState.PAUSE:
                 break;

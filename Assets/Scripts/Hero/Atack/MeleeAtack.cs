@@ -2,7 +2,7 @@ using StarterAssets;
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(StarterAssetsInputs),typeof(AnimatorManager))]
+[RequireComponent(typeof(StarterAssetsInputs))]
 
 public class MeleeAtack : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public class MeleeAtack : MonoBehaviour
 
     private StarterAssetsInputs _input;
     private AnimatorManager _animatorManager;
+
+    private bool _isAtacking;
 
     private void Start()
     {
@@ -27,7 +29,11 @@ public class MeleeAtack : MonoBehaviour
     {
         if (_input.atack && _animatorManager.isGrounded())
         {
-            OnAtackEventStart?.Invoke();
+            if(!_isAtacking)
+            {
+                _isAtacking = true;
+                OnAtackEventStart?.Invoke();
+            }
             SetAtackState();
         }
     }
@@ -55,6 +61,7 @@ public class MeleeAtack : MonoBehaviour
 
     public void OffCombo()
     {
+        _isAtacking = false;    
         OnAtackEventEnd?.Invoke();
         ResetAtackState();
         ResetCombo();
