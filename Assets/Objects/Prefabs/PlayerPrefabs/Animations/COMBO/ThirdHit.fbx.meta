@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: mixamo.com
+    second: ThirdCombo
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -40,7 +40,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: ThirdCombo
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
@@ -54,9 +54,9 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
@@ -73,6 +73,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.8738739
         functionName: OffCombo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.56616044
+        functionName: ComboAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

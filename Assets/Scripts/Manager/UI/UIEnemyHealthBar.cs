@@ -25,6 +25,7 @@ public class UIEnemyHealthBar : MonoBehaviour
             sliderFiller.GetComponent<Image>();
             thirdPart = enemyHealth.Full / 3;
             twoThirdParts = thirdPart * 2;
+            HealthChanged(0,enemyHealth.Current);
         }
     }
     
