@@ -5,7 +5,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
 {
     private StarterAssetsInputs _input;
     private CharacterController _controller;
-    private Animator _animator;
+    private AnimatorManager _animatorManager;
 
     private float _speed;
     private float _targetRotation;
@@ -19,28 +19,14 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
     private float _fallTimeoutDelta;
 
     private float _animationBlend;
-    private int _animIDSpeed;
-    private int _animIDMotionSpeed;
-    private int _animIDGrounded;
-    private int _animIDJump;
-    private int _animIDFreeFall;
 
-    public PlayerStandartMoveBehaviour(IMoveAndRotate movable, StarterAssetsInputs inputs, CharacterController controller, Animator animator) : base(movable)
+    public PlayerStandartMoveBehaviour(IMoveAndRotate movable, StarterAssetsInputs inputs,
+        CharacterController controller, AnimatorManager animatorManager) : base(movable)
     {
         _input = inputs;
         _controller = controller;
-        _animator = animator;
+        _animatorManager = animatorManager;
         _mainCamera = Camera.main;
-        AssignAnimationIDs();
-    }
-
-    private void AssignAnimationIDs()
-    {
-        _animIDSpeed = Animator.StringToHash("Speed");
-        _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-        _animIDGrounded = Animator.StringToHash("Grounded");
-        _animIDJump = Animator.StringToHash("Jump");
-        _animIDFreeFall = Animator.StringToHash("FreeFall");
     }
 
     public override void Pause()
@@ -69,7 +55,6 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
                 break;
             case MoveState.ATACK:
                 //TODO выключать анимацию движения во время атаки
-                _animator.SetFloat(_animIDSpeed, 0);
                 break;
             case MoveState.PAUSE:
                 break;
@@ -105,7 +90,6 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
         if (_animationBlend < 0.01f) _animationBlend = 0f;
 
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
         if (_input.move != Vector2.zero)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
@@ -114,12 +98,11 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
 
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-        
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
-        _animator.SetFloat(_animIDSpeed, _animationBlend);
-        _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+        _animatorManager.SetSpeedParameter(_animationBlend);
+        _animatorManager.SetMotionSpeedParameter(inputMagnitude);
     }
 
     private void JumpAndGravity()
@@ -130,8 +113,8 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
 
             _fallTimeoutDelta = movable.FallTimeout;
 
-            _animator.SetBool(_animIDJump, false);
-            _animator.SetBool(_animIDFreeFall, false);
+            _animatorManager.SetJump(false);
+            _animatorManager.SetFreeFall(false);
 
             if (_verticalVelocity < 0.0f)
             {
@@ -141,7 +124,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
             if (_input.jump)
             {
                 _verticalVelocity = Mathf.Sqrt(movable.JumpHeight * -2f * movable.Gravity);
-                _animator.SetBool(_animIDJump, true);
+                _animatorManager.SetJump(true);
                 _input.jump = false;
             }
 
@@ -156,7 +139,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
 
             isDoubleJumped = true;
 
-            _animator.SetTrigger("DoubleJump");
+            _animatorManager.TriggerDoubleJump();
         }
         else
         {
@@ -168,7 +151,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
             }
             else
             {
-                _animator.SetBool(_animIDFreeFall, true);
+                _animatorManager.SetFreeFall(true);
             }
             _input.jump = false;
         }
@@ -186,7 +169,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
         Grounded = Physics.CheckSphere(spherePosition, movable.GroundedRadius, movable.GroundLayers,
             QueryTriggerInteraction.Ignore);
 
-        _animator.SetBool(_animIDGrounded, Grounded);
+        _animatorManager.SetGrounded(Grounded);
     }
 
     public void SetAtackState()

@@ -26,17 +26,17 @@ public class DashMove : MonoBehaviour
 
     void Update()
     {
-        if (DashUsed())
-        {
-            _personController.IsDashing = true;
-            _inputs.dash = false;
-            _isDashCooled = false;
-            _animatorManager.SetDash(true);
-            StartCoroutine(TimerCorutine());
-            StartCoroutine(DashCorutine());
-        }
-
-        if (_personController.IsDashing) Dash();
+        // if (DashUsed())
+        // {
+        //     _personController.IsDashing = true;
+        //     _inputs.dash = false;
+        //     _isDashCooled = false;
+        //     _animatorManager.SetDash(true);
+        //     StartCoroutine(TimerCorutine());
+        //     StartCoroutine(DashCorutine());
+        // }
+        //
+        // if (_personController.IsDashing) Dash();
     }
 
     private bool DashUsed()

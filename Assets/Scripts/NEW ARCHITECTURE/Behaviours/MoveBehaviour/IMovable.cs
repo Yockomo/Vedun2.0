@@ -34,7 +34,7 @@ public interface IJump
 
     public float FallTimeout { get;}
 
-public float GroundedOffset { get;}
+    public float GroundedOffset { get;}
 
     public float GroundedRadius { get; }
 
