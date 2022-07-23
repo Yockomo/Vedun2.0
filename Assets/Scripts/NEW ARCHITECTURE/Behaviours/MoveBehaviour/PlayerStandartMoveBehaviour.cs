@@ -55,7 +55,6 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
                 break;
             case MoveState.ATACK:
                 //TODO выключать анимацию движения во время атаки
-                _animatorManager.SetSpeedParameter(0);
                 break;
             case MoveState.PAUSE:
                 break;

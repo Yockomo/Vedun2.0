@@ -486,10 +486,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 400264146, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8399645091220033060, guid: 91c687c4626af4c4799542635206a26c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -534,10 +530,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 9212772854674117778, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+    - target: {fileID: 9212772854674117778, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+    - target: {fileID: 9212772854674117778, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+    - target: {fileID: 9212772854674117778, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
     - target: {fileID: 9212772854674117790, guid: 91c687c4626af4c4799542635206a26c, type: 3}
       propertyPath: m_Name
       value: Ivan

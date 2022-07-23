@@ -40,8 +40,6 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>
                 Rotate();
                 break;
             case MoveState.ATACK:
-                LookAtMouseDirection();
-                currentState = MoveState.PAUSE;
                 break;
             case MoveState.PAUSE:
                 break;
@@ -74,6 +72,8 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>
     //TODO реализовать нормальное переключение стейтов
     public void SetAtackState()
     {
+        //повернуться в сторону камеры в начале атаки
+        LookAtMouseDirection();
         currentState = MoveState.ATACK;
     }
 
