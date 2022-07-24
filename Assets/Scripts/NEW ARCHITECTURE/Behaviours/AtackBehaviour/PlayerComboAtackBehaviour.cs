@@ -1,7 +1,8 @@
 ﻿using StarterAssets;
 using System;
+using UnityEngine.Rendering;
 
-    public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
+public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
     {
         private StarterAssetsInputs _input;
         private AnimatorManager _animatorManager;

@@ -1,5 +1,5 @@
 
-public abstract class MoveBehaviour<T> : BaseBehaviour, IBehaviour where T : IMovable
+public abstract class MoveBehaviour<T> : BaseBehaviour, IMoveBehaviour where T : IMovable
 {
     protected T movable;
     protected MoveState currentState;

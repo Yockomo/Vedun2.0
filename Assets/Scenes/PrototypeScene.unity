@@ -123,24 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: a6ac97bc5e945614f835d101ff0aa945, type: 2}
---- !u!1 &40327964 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1351292218140174661, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
-  m_PrefabInstance: {fileID: 204123981}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &40327970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40327964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a63fd975cefa84e8e73d13481d1981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullHealth: 100
 --- !u!1001 &204123981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -606,6 +588,17 @@ MonoBehaviour:
   hitRadius: 1
   hitDistance: 1
   countToDamage: 5
+--- !u!114 &841172111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 400264146, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+  m_PrefabInstance: {fileID: 841172108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841172109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5d5e7f7b441594bac781305b717e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1328452879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
@@ -1029,7 +1022,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 1024924826636265424}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1188,6 +1182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114300091}
   - component: {fileID: 2114300090}
+  - component: {fileID: 1024924826636265424}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1195,3 +1190,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1024924826636265424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024924826636265423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90758c8292e25d4a8ddedcfb90cbcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInstance: {fileID: 841172111}

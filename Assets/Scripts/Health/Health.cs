@@ -7,6 +7,7 @@ public class Health : MonoBehaviour, IHealth, IHealthChanger
     public int Full => fullHealth;
 
     [SerializeField] private int fullHealth = 100;
+    
     private int currentHealth;
 
     public event Action<int, int> Changed;

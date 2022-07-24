@@ -15,9 +15,7 @@ public class Player : Actor, ICanAtack
 
     protected override void Init()
     {
-        _playerInputs = GetComponent<StarterAssetsInputs>();
-        _eventsPlayedOnAtackAnimation = GetComponent<AnimationEvents>();
-
+        GetComponents();
         _mousePositionManager = new MousePositionManager(transform);
         _playersAnimatorManager = new AnimatorManager(GetComponent<Animator>());
 
@@ -33,26 +31,27 @@ public class Player : Actor, ICanAtack
         {
             var moveBehaviour = new PlayerStandartMoveBehaviour(movable, GetComponent<StarterAssetsInputs>(),
                 GetComponent<CharacterController>(), _playersAnimatorManager);
-            FollowMeleeAtackStartEvent(_meleeAtackBehaviour, moveBehaviour.SetAtackState);
-            FollowMeleeAtackEndEvent(_meleeAtackBehaviour, moveBehaviour.SetDefaultState);
-            AddBehaviour(moveBehaviour);
+            AddAtackStartEndEventsAndBehaviour(moveBehaviour, _meleeAtackBehaviour, moveBehaviour.SetAtackState,
+                moveBehaviour.SetDefaultState);
 
             var rotateBehaviour = new PlayerStandartRotateBehaviour(movable, _mousePositionManager, GetComponent<StarterAssetsInputs>());
-            FollowMeleeAtackStartEvent(_meleeAtackBehaviour,rotateBehaviour.SetAtackState);
-            FollowMeleeAtackEndEvent(_meleeAtackBehaviour,rotateBehaviour.SetDefaultState);
-            AddBehaviour(rotateBehaviour);
+            AddAtackStartEndEventsAndBehaviour(rotateBehaviour, _meleeAtackBehaviour, rotateBehaviour.SetAtackState,
+                rotateBehaviour.SetDefaultState);
         }
         else
             Debug.LogError("нет компонента перемещения у " + gameObject.name);
     }
 
-    private void FollowMeleeAtackStartEvent(PlayerComboAtackBehaviour meleeAtack,Action someMethod)
+    private void GetComponents()
     {
-        meleeAtack.OnAtackEventStart += someMethod;
-    }    
-    
-    private void FollowMeleeAtackEndEvent(PlayerComboAtackBehaviour meleeAtack,Action someMethod)
+        _playerInputs = GetComponent<StarterAssetsInputs>();
+        _eventsPlayedOnAtackAnimation = GetComponent<AnimationEvents>();
+    }
+
+    private void AddAtackStartEndEventsAndBehaviour(IBehaviour behaviour,PlayerComboAtackBehaviour _meleeAtackBehaviour, Action onAtackStartAction, Action onAtackEndAction)
     {
-        meleeAtack.OnAtackEventEnd += someMethod;
+        _meleeAtackBehaviour.OnAtackEventStart += onAtackStartAction;
+        _meleeAtackBehaviour.OnAtackEventEnd += onAtackEndAction;
+        AddBehaviour(behaviour);
     }
 }
