@@ -1,9 +1,9 @@
-using Assets.Scripts.NEW_ARCHITECTURE.Components.AtackComponent;
+
 using StarterAssets;
 using System;
 using UnityEngine;
 
-public class Player : Actor, IActor, ICanAtack
+public class Player : Actor, ICanAtack
 {
     private StarterAssetsInputs _playerInputs;
     private AnimationEvents _eventsPlayedOnAtackAnimation;

@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.NEW_ARCHITECTURE.Components.AtackComponent;
-
-namespace Assets.Scripts.NEW_ARCHITECTURE.Behaviours.AtackBehaviour
-{
+﻿
     public abstract class AtackBehaviour<T> : BaseBehaviour, IAtackBehaviour where T : ICanAtack
     {
         protected T attacker;
@@ -18,4 +15,4 @@ namespace Assets.Scripts.NEW_ARCHITECTURE.Behaviours.AtackBehaviour
     public interface IAtackBehaviour : IBehaviour
     {
     }
-}
+
