@@ -173,9 +173,11 @@ GameObject:
   - component: {fileID: 7912709045091802272}
   - component: {fileID: 5774866546307542172}
   - component: {fileID: 40327965}
+  - component: {fileID: 40327970}
+  - component: {fileID: 776991146}
   - component: {fileID: 40327966}
   - component: {fileID: 40327967}
-  - component: {fileID: 40327970}
+  - component: {fileID: 3641279340105711088}
   m_Layer: 0
   m_Name: Stub
   m_TagString: Untagged
@@ -265,6 +267,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2ee71b2e18bcd43949b7a67b6f6046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &40327970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351292218140174661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a63fd975cefa84e8e73d13481d1981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 100
+--- !u!114 &776991146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351292218140174661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f9cf811b64dc84bb89e2406837062e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &40327966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,8 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd8e21be834454f95e5cfd7fdb164ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMoveConfig: {fileID: 11400000, guid: c3c94687c858b6a42a497f0b859dbc02, type: 2}
---- !u!114 &40327970
+  enemyMoveConfig: {fileID: 11400000, guid: d950ae84a78009647836c9902ec53d78, type: 2}
+  animateMovement: 1
+--- !u!114 &3641279340105711088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,10 +328,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1351292218140174661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a63fd975cefa84e8e73d13481d1981, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c74d221909409b945e4726b57fced3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 100
+  stubAtackConfig: {fileID: 11400000, guid: d950ae84a78009647836c9902ec53d78, type: 2}
 --- !u!1 &1387656999414582680
 GameObject:
   m_ObjectHideFlags: 0

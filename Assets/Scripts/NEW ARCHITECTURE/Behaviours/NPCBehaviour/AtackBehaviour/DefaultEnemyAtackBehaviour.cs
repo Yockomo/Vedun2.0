@@ -1,12 +1,37 @@
-using SOScripts;
+
+    using System.Runtime.InteropServices.WindowsRuntime;
+    using UnityEngine;
 
     public class DefaultEnemyAtackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<AtackStates>
     {
-        private EnemyAtackConfig _atackConfig;
+        private EnemyMovementAndAtackConfig _atackConfig;
         
-        public DefaultEnemyAtackBehaviour(ICanAtack attacker, EnemyAtackConfig atackConfig) : base(attacker)
+        private Transform _playersTransform;
+        private Transform _attackerTransform;
+        private float _distanceToTarget;
+        
+        private bool _haveAnimator;
+        private IHaveAtackAnimation _atackAnimation;
+
+        public DefaultEnemyAtackBehaviour(ICanAtack attacker, EnemyMovementAndAtackConfig atackConfig,Transform playersTransform,
+            Transform attackerTransform) : base(attacker)
+        {
+            GetNecessaryDependencies(atackConfig,playersTransform,attackerTransform);
+        }
+        
+        public DefaultEnemyAtackBehaviour(ICanAtack attacker, EnemyMovementAndAtackConfig atackConfig,Transform playersTransform,
+            Transform attackerTransform,IHaveAtackAnimation atackAnimation) : base(attacker)
+        {
+            GetNecessaryDependencies(atackConfig,playersTransform,attackerTransform);
+            _atackAnimation = atackAnimation;
+            _haveAnimator = true;
+        }
+        
+        private void GetNecessaryDependencies(EnemyMovementAndAtackConfig atackConfig, Transform playersTransform,Transform attackerTransform)
         {
             _atackConfig = atackConfig;
+            _playersTransform = playersTransform;
+            _attackerTransform = attackerTransform;
         }
         
         public void SetState(AtackStates state)
@@ -16,6 +41,7 @@ using SOScripts;
         
         public override void Pause()
         {
+            StopAtack();
             SetState(AtackStates.PAUSE);
         }
 
@@ -31,11 +57,15 @@ using SOScripts;
 
         private void HandleCurrentState()
         {
+            _distanceToTarget = Vector3.Distance(_attackerTransform.position, _playersTransform.position);
+            
             switch (currentState)
             {
                 case AtackStates.DEFAULT:
+                    DefaultState();
                     break;
                 case AtackStates.ATACK:
+                    AttackState();
                     break;
                 case AtackStates.PAUSE:
                     break;
@@ -43,5 +73,50 @@ using SOScripts;
                     SetState(AtackStates.DEFAULT);
                     break;
             }
+        }
+
+        private void DefaultState()
+        {
+            StopAtack();
+            
+            if (CloseToTarget())
+            {
+                return;
+            }
+            
+            SetState(AtackStates.ATACK);
+        }
+
+        private void AttackState()
+        {
+            Atack();
+            
+            if (!CloseToTarget())
+            {
+                return;
+            }
+            
+            SetState(AtackStates.DEFAULT);
+        }
+
+        private bool CloseToTarget()
+        {
+            return _distanceToTarget > _atackConfig.StoppingDistance;
+        }
+        
+        private void SetAttack(bool state)
+        {
+            if(_atackAnimation.GetAtackState() != state && _haveAnimator)
+                _atackAnimation.SetAttackState(state);
+        }
+
+        private void Atack()
+        {
+            SetAttack(true);
+        }
+
+        private void StopAtack()
+        {
+            SetAttack(false);
         }
     }

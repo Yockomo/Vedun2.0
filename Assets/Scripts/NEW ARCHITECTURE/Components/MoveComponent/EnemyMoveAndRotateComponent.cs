@@ -2,12 +2,9 @@ using UnityEngine;
 
     public class EnemyMoveAndRotateComponent : MonoBehaviour, IMoveAndRotate
     {
-        [Header("Movement Settings")]
-        [SerializeField] private float moveSpeed = 3;
-
         public Transform Transform => transform;
 
-        public float MoveSpeed => moveSpeed;
+        public float MoveSpeed => 0;
 
         public float SpeedChangeRate => 0;
 

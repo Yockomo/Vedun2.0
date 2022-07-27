@@ -5,7 +5,7 @@ using Zenject;
 [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyChaiseBehaviourContainer : MoveBehaviourContainer
     {
-        [SerializeField] private EnemyChaiseMoveConfig enemyMoveConfig = default;
+        [SerializeField] private EnemyMovementAndAtackConfig enemyMoveConfig = default;
         [SerializeField] private bool animateMovement;
         
         private EnemyChaisePlayerMoveBehaviour _enemyChaisePlayerLogic;

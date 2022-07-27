@@ -1,37 +1,40 @@
-using SOScripts;
 using UnityEngine;
+using Zenject;
 
-    public class StubAtackBehaviourContainer : AtackBehaviourContainer
+public class StubAtackBehaviourContainer : AtackBehaviourContainer
     {
-        [SerializeField] private EnemyAtackConfig stubAtackConfig;
-
+        [SerializeField] private EnemyMovementAndAtackConfig stubAtackConfig;
+        [SerializeField] private bool animateAtack;
+        
         private DefaultEnemyAtackBehaviour _enemyDefaultAtackBehaviour;
-        private ICanSetState<AtackStates> _enemyAtackStatesSetter;
+        private Transform _playersTransform;
         
         public override AtackBehaviour<ICanAtack> GetValue => _enemyDefaultAtackBehaviour;
 
+        [Inject]
+        private void Construct(Player player)
+        {
+            _playersTransform = player.GetComponent<Transform>();
+        }
+        
         protected override void Init()
         {   
             GetICanAtackComponent();
-            GetICanSetAtackStateReference();
         }
 
         private void GetICanAtackComponent()
         {
             if (TryGetComponent<ICanAtack>(out var atacker))
-                _enemyDefaultAtackBehaviour = new DefaultEnemyAtackBehaviour(atacker, stubAtackConfig);
+            {
+                if(animateAtack)
+                    _enemyDefaultAtackBehaviour = new DefaultEnemyAtackBehaviour(atacker, stubAtackConfig,_playersTransform,
+                        transform,GetComponent<IHaveAtackAnimation>());
+                else
+                    _enemyDefaultAtackBehaviour = new DefaultEnemyAtackBehaviour(atacker, stubAtackConfig,_playersTransform,
+                        transform);
+            }
             else
                 Debug.LogError("нет компонента ICanAtack на " + gameObject.name);   
-        }
-
-        private void GetICanSetAtackStateReference()
-        {
-            _enemyAtackStatesSetter = _enemyDefaultAtackBehaviour;
-        }
-
-        public void SetBehaviourState(AtackStates newState)
-        {
-            _enemyAtackStatesSetter.SetState(newState);
         }
     }
 

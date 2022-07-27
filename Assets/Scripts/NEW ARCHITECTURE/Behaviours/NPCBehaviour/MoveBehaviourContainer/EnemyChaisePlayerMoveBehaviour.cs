@@ -3,16 +3,17 @@ using UnityEngine.AI;
 
 public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICanSetState<MoveState>
 {
-    private EnemyChaiseMoveConfig _enemyChaiseMoveConfig;
+    private EnemyMovementAndAtackConfig _enemyChaiseMoveConfig;
 
     private Transform _playersTransform;
     private NavMeshAgent _navMeshAgent;
     private IHaveMoveAnimation _moveAnimation;
+    
     private bool _haveAnimator;
     
     private float _distanceToTarget;
 
-    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyChaiseMoveConfig enemyChaiseMoveConfig,
+    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyMovementAndAtackConfig enemyChaiseMoveConfig,
         Transform playersTransform, NavMeshAgent navmeshAgent, IHaveMoveAnimation moveAnimation) : base(movable)
     {
         GetNecessaryDependencies(enemyChaiseMoveConfig,playersTransform,navmeshAgent);
@@ -20,13 +21,13 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
         _haveAnimator = true;
     }
     
-    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyChaiseMoveConfig enemyChaiseMoveConfig,
+    public EnemyChaisePlayerMoveBehaviour(IMoveAndRotate movable, EnemyMovementAndAtackConfig enemyChaiseMoveConfig,
         Transform playersTransform, NavMeshAgent navmeshAgent) : base(movable)
     {
         GetNecessaryDependencies(enemyChaiseMoveConfig,playersTransform,navmeshAgent);
     }
 
-    private void GetNecessaryDependencies(EnemyChaiseMoveConfig enemyChaiseMoveConfig,
+    private void GetNecessaryDependencies(EnemyMovementAndAtackConfig enemyChaiseMoveConfig,
         Transform playersTransform, NavMeshAgent navmeshAgent)
     {
         _enemyChaiseMoveConfig = enemyChaiseMoveConfig;
@@ -100,7 +101,7 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
     private void ChaisePlayer()
     {
         StopMovement(false);
-        SetSpeed(movable.MoveSpeed);
+        SetSpeed(_enemyChaiseMoveConfig.MoveSpeed);
         SetDestination(_playersTransform.position);
     }
 
