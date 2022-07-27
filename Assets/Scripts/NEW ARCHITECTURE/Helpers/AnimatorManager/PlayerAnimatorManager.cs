@@ -1,9 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AnimatorManager 
+public class PlayerAnimatorManager : AnimatorManager
 {
-    private Animator _animator;
-
     private readonly int _atack = Animator.StringToHash("Atack");
     private readonly int _combo = Animator.StringToHash("Combo");
 
@@ -23,11 +21,10 @@ public class AnimatorManager
     //If someday backwardRun will be needed
     /*private int _backwardRunLayer =_animator.GetLayerIndex("BackWardRun");*/
 
-    public AnimatorManager(Animator animator)
+    public PlayerAnimatorManager(Animator animator) : base(animator)
     {
-        _animator = animator;
     }
-
+    
     public void SetSpeedParameter(float value)
     {
         _animator.SetFloat(_animIDSpeed, value);
@@ -43,6 +40,11 @@ public class AnimatorManager
         _animator.SetBool(_animIDGrounded, value);
     }
 
+    public bool IsGrounded()
+    {
+        return _animator.GetBool(_grounded);
+    }
+    
     public void SetJump(bool value)
     {
         _animator.SetBool(_animIDJump, value);
@@ -57,7 +59,7 @@ public class AnimatorManager
     {
         _animator.SetBool(_animIDFreeFall, value);
     }
-
+    
     public void SetAtack()
     {
         _animator.SetTrigger(_atack);
@@ -66,6 +68,11 @@ public class AnimatorManager
     public void ResetAtack()
     {
         _animator.ResetTrigger(_atack);
+    }
+
+    public bool GetAtack()
+    {
+        return _animator.GetBool(_atack);
     }
 
     public void SetCombo()
@@ -88,19 +95,9 @@ public class AnimatorManager
         _animator.SetBool(_dash, value);
     }
 
-    public bool isGrounded()
-    {
-        return _animator.GetBool(_grounded);
-    }
-
     public void SetDeadAnimation(bool value)
     {
         _animator.SetBool(_dead, value);
-    }
-
-    public bool GetAtack()
-    {
-        return _animator.GetBool(_atack);
     }
 
     public float GetSpeed()

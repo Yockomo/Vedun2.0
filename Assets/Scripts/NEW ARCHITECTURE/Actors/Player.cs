@@ -1,4 +1,3 @@
-
 using StarterAssets;
 using System;
 using UnityEngine;
@@ -8,7 +7,7 @@ public class Player : Actor, ICanAtack
     private StarterAssetsInputs _playerInputs;
     private AnimationEvents _eventsPlayedOnAtackAnimation;
 
-    private AnimatorManager _playersAnimatorManager;
+    private PlayerAnimatorManager _playersAnimatorManager;
     private MousePositionManager _mousePositionManager;
 
     private PlayerComboAtackBehaviour _meleeAtackBehaviour;
@@ -17,7 +16,7 @@ public class Player : Actor, ICanAtack
     {
         GetComponents();
         _mousePositionManager = new MousePositionManager(transform);
-        _playersAnimatorManager = new AnimatorManager(GetComponent<Animator>());
+        _playersAnimatorManager = new PlayerAnimatorManager(GetComponent<Animator>());
 
         if(TryGetComponent<ICanAtack>(out ICanAtack atacker))
         {
@@ -39,7 +38,7 @@ public class Player : Actor, ICanAtack
                 rotateBehaviour.SetDefaultState);
         }
         else
-            Debug.LogError("нет компонента перемещения у " + gameObject.name);
+            Debug.LogError("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ " + gameObject.name);
     }
 
     private void GetComponents()

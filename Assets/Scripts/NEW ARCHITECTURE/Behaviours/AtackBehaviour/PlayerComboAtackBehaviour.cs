@@ -5,12 +5,13 @@ using UnityEngine.Rendering;
 public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
     {
         private StarterAssetsInputs _input;
-        private AnimatorManager _animatorManager;
+        
+        private PlayerAnimatorManager _animatorManager;
 
         public event Action OnAtackEventStart;
         public event Action OnAtackEventEnd;
 
-        public PlayerComboAtackBehaviour(ICanAtack attacker, StarterAssetsInputs inputs, AnimatorManager animatorManager) : base(attacker)
+        public PlayerComboAtackBehaviour(ICanAtack attacker, StarterAssetsInputs inputs, PlayerAnimatorManager animatorManager) : base(attacker)
         {
             _input = inputs;
             _animatorManager = animatorManager;
@@ -70,7 +71,7 @@ public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
 
         private bool PlayerAtack()
         {
-            return _input.atack && _animatorManager.isGrounded();
+            return _input.atack && _animatorManager.IsGrounded();
         }
 
         private void SetAtackState()

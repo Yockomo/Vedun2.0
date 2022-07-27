@@ -5,7 +5,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
 {
     private StarterAssetsInputs _input;
     private CharacterController _controller;
-    private AnimatorManager _animatorManager;
+    private PlayerAnimatorManager _animatorManager;
 
     private float _speed;
     private float _targetRotation;
@@ -21,7 +21,7 @@ public class PlayerStandartMoveBehaviour : MoveBehaviour<IMoveAndRotate>
     private float _animationBlend;
 
     public PlayerStandartMoveBehaviour(IMoveAndRotate movable, StarterAssetsInputs inputs,
-        CharacterController controller, AnimatorManager animatorManager) : base(movable)
+        CharacterController controller, PlayerAnimatorManager animatorManager) : base(movable)
     {
         _input = inputs;
         _controller = controller;

@@ -11,7 +11,7 @@ public class DashMove : MonoBehaviour
 
     private ThirdPersonController _personController;
     private StarterAssetsInputs _inputs;
-    private AnimatorManager _animatorManager;
+    private PlayerAnimatorManager _animatorManager;
     private bool _isDashCooled;
 
     public UnityEvent UpdateUI;
@@ -20,7 +20,7 @@ public class DashMove : MonoBehaviour
     {
         _personController = GetComponent<ThirdPersonController>();
         _inputs = GetComponent<StarterAssetsInputs>();
-        _animatorManager = GetComponent<AnimatorManager>();
+        _animatorManager = new PlayerAnimatorManager(GetComponent<Animator>());
         _isDashCooled = true;
     }
 

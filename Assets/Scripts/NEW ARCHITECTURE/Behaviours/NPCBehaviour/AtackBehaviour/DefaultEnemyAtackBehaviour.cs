@@ -1,8 +1,6 @@
+using SOScripts;
 
-    using System.Runtime.CompilerServices;
-    using SOScripts;
-
-    public class DefaultEnemyAtackBehaviour : AtackBehaviour<ICanAtack>
+    public class DefaultEnemyAtackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<AtackStates>
     {
         private EnemyAtackConfig _atackConfig;
         
@@ -10,15 +8,20 @@
         {
             _atackConfig = atackConfig;
         }
-
+        
+        public void SetState(AtackStates state)
+        {
+            currentState = state;
+        }
+        
         public override void Pause()
         {
-            currentState = AtackStates.PAUSE;
+            SetState(AtackStates.PAUSE);
         }
 
         public override void UnPause()
         {
-            currentState = AtackStates.UNPAUSE;
+            SetState(AtackStates.UNPAUSE);
         }
         
         public override void UpdateBehaviour()
@@ -37,9 +40,8 @@
                 case AtackStates.PAUSE:
                     break;
                 case AtackStates.UNPAUSE:
-                    currentState = AtackStates.DEFAULT;
+                    SetState(AtackStates.DEFAULT);
                     break;
             }
         }
-        
     }
