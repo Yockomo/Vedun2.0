@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e510088d27ac4d1d8b7f3607c0b4b2ae, type: 3}
   m_Name: StubMoveAtackConfig
   m_EditorClassIdentifier: 
-  stoppingDistance: 1
-  reactDistance: 0
+  stoppingDistance: 1.6
+  reactDistance: 3
+  moveSpeed: 3

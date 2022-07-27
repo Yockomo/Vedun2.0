@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stub
       objectReference: {fileID: 0}
+    - target: {fileID: 3641279340105711088, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
+      propertyPath: animatAtack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3641279340105711088, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
+      propertyPath: animateAtack
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8946642287416221804, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
       propertyPath: m_RootOrder
       value: 1

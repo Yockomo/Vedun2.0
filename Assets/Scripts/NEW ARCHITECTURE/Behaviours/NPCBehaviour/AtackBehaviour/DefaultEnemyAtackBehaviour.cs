@@ -1,5 +1,3 @@
-
-    using System.Runtime.InteropServices.WindowsRuntime;
     using UnityEngine;
 
     public class DefaultEnemyAtackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<AtackStates>
@@ -103,12 +101,6 @@
         {
             return _distanceToTarget > _atackConfig.StoppingDistance;
         }
-        
-        private void SetAttack(bool state)
-        {
-            if(_atackAnimation.GetAtackState() != state && _haveAnimator)
-                _atackAnimation.SetAttackState(state);
-        }
 
         private void Atack()
         {
@@ -118,5 +110,13 @@
         private void StopAtack()
         {
             SetAttack(false);
+        }
+        
+        private void SetAttack(bool state)
+        {
+            if (_haveAnimator && _atackAnimation.GetAtackState() != state)
+            {
+                _atackAnimation.SetAttackState(state);
+            }
         }
     }
