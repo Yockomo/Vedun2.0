@@ -2439,11 +2439,13 @@ GameObject:
   - component: {fileID: 9212772854674117780}
   - component: {fileID: 4860517823620876514}
   - component: {fileID: 9212772854674117778}
-  - component: {fileID: 2024063962354153093}
-  - component: {fileID: 4798104673400631554}
   - component: {fileID: 400264146}
+  - component: {fileID: 7602602102160686759}
   - component: {fileID: 596610616}
   - component: {fileID: 400264145}
+  - component: {fileID: 1017710396374142706}
+  - component: {fileID: 2024063962354153093}
+  - component: {fileID: 841172110}
   m_Layer: 3
   m_Name: Ivan
   m_TagString: Player
@@ -2627,60 +2629,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2024063962354153093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9212772854674117790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e3c6947bd54d22a89084dc3746f300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4798104673400631554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9212772854674117790}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c829e6decfe97b468424ec063f7b6c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashTime: 0
-  dashSpeed: 0
-  dashCooldown: 0
-  UpdateUI:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: DashCooldownSprite
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: CheckEnergyBar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &400264146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2693,6 +2641,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5d5e7f7b441594bac781305b717e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7602602102160686759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212772854674117790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e306c2ceb5244c058587b7c32ba90144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 100
 --- !u!114 &596610616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2729,3 +2690,53 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &1017710396374142706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212772854674117790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ab53d0fd8a4d5b851571bfc94c3faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashTime: 1
+  dashSpeed: 30
+  dashCooldown: 1.5
+--- !u!114 &2024063962354153093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212772854674117790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e3c6947bd54d22a89084dc3746f300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayToMove: 0.3
+  moveDistance: 1
+  _attackSpeed: 4
+--- !u!114 &841172110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212772854674117790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32290dc9657fd24ebbb0333f78f28f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAxeStats: {fileID: 11400000, guid: b2922ca3775749440b79100925264b55, type: 2}
+  basicPlayerStats: {fileID: 11400000, guid: 8694bea7e6c26ce4f8375e0e2a7c308b, type: 2}
+  damageTo:
+    serializedVersion: 2
+    m_Bits: 64
+  hitRadius: 1
+  hitDistance: 1
+  countToDamage: 5

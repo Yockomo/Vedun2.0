@@ -25,7 +25,7 @@ public class Player : Actor, ICanAtack
             _eventsPlayedOnAtackAnimation.NextComboAtackEvent += _meleeAtackBehaviour.NextComboAtack;
             _eventsPlayedOnAtackAnimation.OffComboEvent += _meleeAtackBehaviour.OffCombo;
         }
-
+        
         if (TryGetComponent<IMoveAndRotate>(out IMoveAndRotate movable))
         {
             var moveBehaviour = new PlayerStandartMoveBehaviour(movable, GetComponent<StarterAssetsInputs>(),
@@ -39,6 +39,8 @@ public class Player : Actor, ICanAtack
         }
         else
             Debug.LogError("��� ���������� ����������� � " + gameObject.name);
+        
+        AddBehaviour(CreateDashBehaviour());
     }
 
     private void GetComponents()
@@ -52,5 +54,18 @@ public class Player : Actor, ICanAtack
         _meleeAtackBehaviour.OnAtackEventStart += onAtackStartAction;
         _meleeAtackBehaviour.OnAtackEventEnd += onAtackEndAction;
         AddBehaviour(behaviour);
+    }
+    
+    private PlayerStandartDashBehaviour CreateDashBehaviour()
+    {
+        if (TryGetComponent<IDashable>(out var dashable))
+        {
+            return new PlayerStandartDashBehaviour(dashable, GetComponent<CharacterController>(),
+                GetComponent<StarterAssetsInputs>(), _playersAnimatorManager, Camera.main);
+        }
+        else
+            Debug.LogError("There is no dashable component on " + gameObject.name);
+
+        return null;
     }
 }

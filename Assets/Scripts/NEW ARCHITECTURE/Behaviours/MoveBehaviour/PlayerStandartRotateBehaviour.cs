@@ -19,12 +19,12 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>
 
     public override void Pause()
     {
-        currentState = MoveState.PAUSE;
+        _currentState = MoveState.PAUSE;
     }
 
     public override void UnPause()
     {
-        currentState = MoveState.UNPAUSE;
+        _currentState = MoveState.UNPAUSE;
     }
 
     public override void UpdateBehaviour()
@@ -34,7 +34,7 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>
 
     private void HandleCurrentState()
     {
-        switch (currentState)
+        switch (_currentState)
         {
             case MoveState.DEFAULT:
                 Rotate();
@@ -44,7 +44,7 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>
             case MoveState.PAUSE:
                 break;
             case MoveState.UNPAUSE:
-                currentState = MoveState.DEFAULT;
+                _currentState = MoveState.DEFAULT;
                 break;
         }
     }
@@ -56,29 +56,29 @@ public class PlayerStandartRotateBehaviour : MoveBehaviour<IMoveAndRotate>
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                               _mainCamera.transform.eulerAngles.y;
-            float rotation = Mathf.SmoothDampAngle(movable.Transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                movable.RotationSmoothTime);
+            float rotation = Mathf.SmoothDampAngle(_movable.Transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                _movable.RotationSmoothTime);
 
-            movable.Transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            _movable.Transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
     }
 
     private void LookAtMouseDirection()
     {
         var position = _mousePositionManager.GetMousePosition();
-        movable.Transform.LookAt(new Vector3(position.x, movable.Transform.position.y, position.z));
+        _movable.Transform.LookAt(new Vector3(position.x, _movable.Transform.position.y, position.z));
     }
 
-    //TODO реализовать нормальное переключение стейтов
+    //TODO СЂРµР°Р»РёР·РѕРІР°С‚СЊ РЅРѕСЂРјР°Р»СЊРЅРѕРµ РїРµСЂРµРєР»СЋС‡РµРЅРёРµ СЃС‚РµР№С‚РѕРІ
     public void SetAtackState()
     {
-        //повернуться в сторону камеры в начале атаки
+        //РїРѕРІРµСЂРЅСѓС‚СЊСЃСЏ РІ СЃС‚РѕСЂРѕРЅСѓ РєР°РјРµСЂС‹ РІ РЅР°С‡Р°Р»Рµ Р°С‚Р°РєРё
         LookAtMouseDirection();
-        currentState = MoveState.ATACK;
+        _currentState = MoveState.ATACK;
     }
 
     public void SetDefaultState()
     {
-        currentState = MoveState.DEFAULT;
+        _currentState = MoveState.DEFAULT;
     }
 }

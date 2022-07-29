@@ -134,14 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stub
       objectReference: {fileID: 0}
-    - target: {fileID: 3641279340105711088, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
-      propertyPath: animatAtack
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641279340105711088, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
-      propertyPath: animateAtack
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8946642287416221804, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -489,10 +481,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 772154856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a63fd975cefa84e8e73d13481d1981, type: 3}
+  m_Script: {fileID: 11500000, guid: be1e54b69cba4cbe9b3528b7525979b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 20
+  fullHealth: 100
 --- !u!1001 &841172108
 PrefabInstance:
   m_ObjectHideFlags: 0

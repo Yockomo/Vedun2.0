@@ -1,8 +1,7 @@
 ﻿using StarterAssets;
 using System;
-using UnityEngine.Rendering;
 
-public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
+public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<AtackStates>
     {
         private StarterAssetsInputs _input;
         
@@ -17,14 +16,19 @@ public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
             _animatorManager = animatorManager;
         }
 
+        public void SetState(AtackStates state)
+        {
+            currentState = state;
+        }
+        
         public override void Pause()
         {
-            currentState = AtackStates.PAUSE;
+            SetState(AtackStates.PAUSE);
         }
 
         public override void UnPause()
         {
-            currentState = AtackStates.UNPAUSE;
+            SetState(AtackStates.UNPAUSE);
         }
 
         public override void UpdateBehaviour()
@@ -57,7 +61,7 @@ public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
                 OnAtackEventStart?.Invoke();
                 SetAtackState();
 
-                currentState = AtackStates.ATACK;
+                SetState(AtackStates.ATACK);
             }
         }
 
@@ -100,6 +104,6 @@ public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>
             OnAtackEventEnd?.Invoke();
             ResetAtackState();
             ResetCombo();
-            currentState = AtackStates.DEFAULT;
+            SetState(AtackStates.DEFAULT);
         }
     }

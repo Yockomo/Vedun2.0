@@ -24,21 +24,6 @@ public class DashMove : MonoBehaviour
         _isDashCooled = true;
     }
 
-    void Update()
-    {
-        // if (DashUsed())
-        // {
-        //     _personController.IsDashing = true;
-        //     _inputs.dash = false;
-        //     _isDashCooled = false;
-        //     _animatorManager.SetDash(true);
-        //     StartCoroutine(TimerCorutine());
-        //     StartCoroutine(DashCorutine());
-        // }
-        //
-        // if (_personController.IsDashing) Dash();
-    }
-
     private bool DashUsed()
     {
         return _inputs.dash && !_personController.IsDashing && _isDashCooled;
@@ -50,18 +35,5 @@ public class DashMove : MonoBehaviour
         _personController.Controller.Move(targetDirection.normalized * (dashSpeed * Time.deltaTime) +
                  new Vector3(0.0f, _personController._verticalVelocity, 0.0f) * Time.deltaTime);
         UpdateUI.Invoke();
-    }
-
-    private IEnumerator DashCorutine()
-    {
-        yield return new WaitForSeconds(dashTime);
-        _animatorManager.SetDash(false);
-        _personController.IsDashing = false;
-    }
-
-    private IEnumerator TimerCorutine()
-    {
-        yield return new WaitForSeconds(dashCooldown);
-        _isDashCooled = true;
     }
 }

@@ -47,7 +47,7 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
 
     public void SetState(MoveState state)
     {
-        currentState = state;
+        _currentState = state;
     }
 
     public override void UpdateBehaviour()
@@ -57,9 +57,9 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
 
     private void HandleCurrentState()
     {
-        _distanceToTarget = Vector3.Distance(movable.Transform.position, _playersTransform.position);
+        _distanceToTarget = Vector3.Distance(_movable.Transform.position, _playersTransform.position);
 
-        switch (currentState)
+        switch (_currentState)
         {
             case (MoveState.DEFAULT):
                 DefaultState();
@@ -94,7 +94,7 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
             ChaisePlayer();
             return;
         }
-        
+        LookAtPlayer();
         StopMovement(true);
     }
 
@@ -105,6 +105,13 @@ public class EnemyChaisePlayerMoveBehaviour : MoveBehaviour<IMoveAndRotate>, ICa
         SetDestination(_playersTransform.position);
     }
 
+    private void LookAtPlayer()
+    {
+        var lookPoint = new Vector3(_playersTransform.position.x, _movable.Transform.position.y,
+            _playersTransform.position.z);
+        _movable.Transform.LookAt(lookPoint);
+    }
+    
     private void StopMovement(bool value)
     {
         _navMeshAgent.isStopped = value;

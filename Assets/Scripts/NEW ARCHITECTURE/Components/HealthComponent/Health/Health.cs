@@ -1,22 +1,27 @@
 using System;
+using System.ComponentModel;
 using UnityEngine;
 
-public class Health : MonoBehaviour, IHealth, IHealthChanger
+public abstract class Health : MonoBehaviour, IHealth, IHealthChanger
 {
-    public int Current => currentHealth;
-    public int Full => fullHealth;
-
-    [SerializeField] private int fullHealth = 100;
+    [SerializeField] protected int fullHealth = 100;
     
-    private int currentHealth;
+    protected int currentHealth;
 
+    public int CurrentHealth => currentHealth;
+    public int FullHealth => fullHealth;
     public event Action<int, int> Changed;
 
     private void Start()
     {
-        currentHealth = fullHealth;
+        OnStartFunction();
     }
 
+    protected virtual void OnStartFunction()
+    {
+        currentHealth = fullHealth;
+    }
+    
     public void AddValue(int count)
     {
         currentHealth += count;

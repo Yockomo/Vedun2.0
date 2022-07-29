@@ -20,12 +20,12 @@ public class UIEnemyHealthBar : MonoBehaviour
         {
             enemyHealth.Changed += HealthChanged;
             slider.wholeNumbers = true;
-            slider.maxValue = enemyHealth.Full;
-            slider.value = enemyHealth.Current;
+            slider.maxValue = enemyHealth.FullHealth;
+            slider.value = enemyHealth.CurrentHealth;
             sliderFiller.GetComponent<Image>();
-            thirdPart = enemyHealth.Full / 3;
+            thirdPart = enemyHealth.FullHealth / 3;
             twoThirdParts = thirdPart * 2;
-            HealthChanged(0,enemyHealth.Current);
+            HealthChanged(0,enemyHealth.CurrentHealth);
         }
     }
     

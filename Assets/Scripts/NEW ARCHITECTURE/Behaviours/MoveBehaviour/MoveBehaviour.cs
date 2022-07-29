@@ -1,12 +1,12 @@
 
 public abstract class MoveBehaviour<T> : BaseBehaviour, IMoveBehaviour where T : IMovable
 {
-    protected T movable;
-    protected MoveState currentState;
+    protected T _movable;
+    protected MoveState _currentState;
 
     protected MoveBehaviour(T movable)
     {
-        this.movable = movable;
+        _movable = movable;
     }
 }
 

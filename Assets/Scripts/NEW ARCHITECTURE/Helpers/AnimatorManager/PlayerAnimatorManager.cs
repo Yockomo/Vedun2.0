@@ -90,9 +90,9 @@ public class PlayerAnimatorManager : AnimatorManager
         _animator.SetBool(_axeThrow, value);
     }
 
-    public void SetDash(bool value)
+    public void SetDash()
     {
-        _animator.SetBool(_dash, value);
+        _animator.SetTrigger(_dash);
     }
 
     public void SetDeadAnimation(bool value)
