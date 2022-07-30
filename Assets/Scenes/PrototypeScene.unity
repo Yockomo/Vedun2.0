@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stub
       objectReference: {fileID: 0}
+    - target: {fileID: 1351292218140174661, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8946642287416221804, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -492,21 +496,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 400264146, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 400264145, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: moveSpeed
+      value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 2481945608474842206, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
+    - target: {fileID: 1017710396374142706, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: dashSpeed
+      value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 4798104673400631554, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: UpdateUI.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4798104673400631554, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: UpdateUI.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckEnergyBar
+    - target: {fileID: 1017710396374142706, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: dashCooldown
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8399645091220033060, guid: 91c687c4626af4c4799542635206a26c, type: 3}
       propertyPath: m_RootOrder
@@ -552,48 +552,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9212772854674117790, guid: 91c687c4626af4c4799542635206a26c, type: 3}
       propertyPath: m_Name
       value: Ivan
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9212772854674117781, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91c687c4626af4c4799542635206a26c, type: 3}
---- !u!1 &841172109 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9212772854674117790, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-  m_PrefabInstance: {fileID: 841172108}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &841172110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841172109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e32290dc9657fd24ebbb0333f78f28f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basicAxeStats: {fileID: 11400000, guid: b2922ca3775749440b79100925264b55, type: 2}
-  basicPlayerStats: {fileID: 11400000, guid: 8694bea7e6c26ce4f8375e0e2a7c308b, type: 2}
-  damageTo:
-    serializedVersion: 2
-    m_Bits: 64
-  hitRadius: 1
-  hitDistance: 1
-  countToDamage: 5
 --- !u!114 &841172111 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 400264146, guid: 91c687c4626af4c4799542635206a26c, type: 3}
   m_PrefabInstance: {fileID: 841172108}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841172109}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f5d5e7f7b441594bac781305b717e15, type: 3}
