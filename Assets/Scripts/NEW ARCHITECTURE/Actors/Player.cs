@@ -2,31 +2,14 @@ using StarterAssets;
 using System;
 using UnityEngine;
 
-public class Player : Actor, ICanAtack, IHaveMainStats
+public class Player : ActorWithMainStats, ICanAtack
 {
-    private IActorsMainStats _actorsMainStats;
-    
-    public IActorsMainStats MainStatsContainer 
-    {
-        get
-        {
-            return _actorsMainStats;
-        } 
-        set        
-        {
-            if (_actorsMainStats == null)
-            {
-                _actorsMainStats = value;
-            }
-        }
-    }
-
     private StarterAssetsInputs _playerInputs;
     private CharacterController _characterController;
+    private AnimationEvents _eventsPlayedOnAtackAnimation;
     
     private MousePositionManager _mousePositionManager;
     private PlayerAnimatorManager _playersAnimatorManager;
-    private AnimationEvents _eventsPlayedOnAtackAnimation;
     private PlayerComboAtackBehaviour _meleeAtackBehaviour;
 
     protected override void Init()
@@ -54,9 +37,6 @@ public class Player : Actor, ICanAtack, IHaveMainStats
 
     private void GetReferencesFromObject()
     {
-        _actorsMainStats = GetComponent<IActorsMainStats>();
-        _actorsMainStats.Actor = this;
-        
         _playerInputs = GetComponent<StarterAssetsInputs>();
         _characterController = GetComponent<CharacterController>();
         _eventsPlayedOnAtackAnimation = GetComponent<AnimationEvents>();

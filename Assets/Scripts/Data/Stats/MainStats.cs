@@ -1,13 +1,45 @@
-﻿
+﻿using System;
+using UnityEngine;
+
+[Serializable]
 public struct MainStats
 {
-    public float Health { get;  private set; }
-    public float Energy { get;  private set; }
-    public float Strength { get;  private set; }
-    public float Agility { get;  private set; }
-    public float Defence { get;  private set; }
+    [SerializeField] private float _health;
+    public float Health
+    {
+        get => _health;
+        private set => _health = value;
+    }
+    
+    [SerializeField] private float _energy;
+    public float Energy
+    {
+        get => _energy;
+        private set => _energy = value;
+    }
 
-    public MainStats(float health, float energy, float strength, float agility, float defence) 
+    [SerializeField] private float _strength;
+    public float Strength
+    {
+        get => _strength;
+        private set => _strength = value;
+    }
+
+    [SerializeField] private float _agility;
+    public float Agility
+    {
+        get => _agility;
+        private set => _agility = value;
+    }
+
+    [SerializeField] private float _defence;
+    public float Defence
+    {
+        get => _defence;
+        private set => _defence = value;
+    }
+
+    public MainStats(float health, float energy, float strength, float agility, float defence) : this()
     {
         Health = health;
         Energy = energy;

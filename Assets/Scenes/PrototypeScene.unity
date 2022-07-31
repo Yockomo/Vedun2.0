@@ -496,17 +496,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 400264145, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: moveSpeed
+    - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: mainStats._energy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: mainStats._health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: mainStats._agility
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1017710396374142706, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: dashSpeed
-      value: 40
+    - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: mainStats._defence
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1017710396374142706, guid: 91c687c4626af4c4799542635206a26c, type: 3}
-      propertyPath: dashCooldown
-      value: 0.5
+    - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: mainStats._strength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
+      propertyPath: mainStats.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8399645091220033060, guid: 91c687c4626af4c4799542635206a26c, type: 3}
       propertyPath: m_RootOrder

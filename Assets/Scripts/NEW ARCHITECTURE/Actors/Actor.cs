@@ -6,7 +6,7 @@ public abstract class Actor : MonoBehaviour, IActor
 {
     protected List<IBehaviour> behaviours = new List<IBehaviour>(20);
     
-    private void Start()
+    protected virtual void Start()
     {
         Init();
     }

@@ -2444,6 +2444,7 @@ GameObject:
   - component: {fileID: 596610616}
   - component: {fileID: 400264145}
   - component: {fileID: 1017710396374142706}
+  - component: {fileID: 5352756916088012422}
   - component: {fileID: 2024063962354153093}
   - component: {fileID: 841172110}
   m_Layer: 3
@@ -2678,7 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba9a5f62db66cb498bab641b407766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   speedChangeRate: 10
   rotationSmoothTime: 0.12
   jumpHeight: 1.2
@@ -2703,8 +2704,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashTime: 1
-  dashSpeed: 30
-  dashCooldown: 1.5
+  dashSpeed: 40
+  dashCooldown: 0.5
+--- !u!114 &5352756916088012422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212772854674117790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0fd72ebb1e4d868323ac49e88284fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2024063962354153093
 MonoBehaviour:
   m_ObjectHideFlags: 0
