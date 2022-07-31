@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1351292218140174661, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8946642287416221804, guid: a3a94b0f9869fc549bfc48fc8c1430ab, type: 3}
       propertyPath: m_RootOrder
@@ -488,7 +488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1e54b69cba4cbe9b3528b7525979b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 100
 --- !u!1001 &841172108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -502,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
       propertyPath: mainStats._health
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5352756916088012422, guid: 91c687c4626af4c4799542635206a26c, type: 3}
       propertyPath: mainStats._agility

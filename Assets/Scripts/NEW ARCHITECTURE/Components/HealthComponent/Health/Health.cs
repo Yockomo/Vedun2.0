@@ -1,11 +1,9 @@
 using System;
-using System.ComponentModel;
 using UnityEngine;
 
 public abstract class Health : MonoBehaviour, IHealth, IHealthChanger
 {
-    [SerializeField] protected int fullHealth = 100;
-    
+    protected int fullHealth;
     protected int currentHealth;
 
     public int CurrentHealth => currentHealth;
@@ -21,17 +19,29 @@ public abstract class Health : MonoBehaviour, IHealth, IHealthChanger
     {
         currentHealth = fullHealth;
     }
+
+    public void SetFullHealthValue(int value)
+    {
+        fullHealth = value;
+        Changed?.Invoke(fullHealth,currentHealth);
+    }
+
+    public void ChangeFullHealth(int value)
+    {
+        fullHealth += value;
+        Changed?.Invoke(fullHealth, currentHealth);
+    }
     
     public void AddValue(int count)
     {
         currentHealth += count;
         if (currentHealth > fullHealth) currentHealth = fullHealth;
-        Changed?.Invoke(count, currentHealth);
+        Changed?.Invoke(fullHealth, currentHealth);
     }
 
     public void DecValue(int count)
     {
         currentHealth -= count;
-        Changed?.Invoke(count, currentHealth);
+        Changed?.Invoke(fullHealth, currentHealth);
     }
 }

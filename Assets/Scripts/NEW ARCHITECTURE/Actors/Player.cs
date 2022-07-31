@@ -21,6 +21,7 @@ public class Player : ActorWithMainStats, ICanAtack
             _meleeAtackBehaviour = CreateComboAtackBehaviour(atacker);
             _eventsPlayedOnAtackAnimation.NextComboAtackEvent += _meleeAtackBehaviour.NextComboAtack;
             _eventsPlayedOnAtackAnimation.OffComboEvent += _meleeAtackBehaviour.OffCombo;
+            _eventsPlayedOnAtackAnimation.MoveOnAtackCoroutineEvent += _meleeAtackBehaviour.MoveOnAttack;
             AddBehaviour(_meleeAtackBehaviour);
         }
         
@@ -47,7 +48,7 @@ public class Player : ActorWithMainStats, ICanAtack
 
     private PlayerComboAtackBehaviour CreateComboAtackBehaviour(ICanAtack atacker)
     { 
-        return new PlayerComboAtackBehaviour(atacker, _playerInputs, _playersAnimatorManager);
+        return new PlayerComboAtackBehaviour(atacker, _playerInputs, _playersAnimatorManager, _characterController);
     }
     
     private PlayerStandartMoveBehaviour CreateMoveBehaviour(IMoveAndRotate movable)

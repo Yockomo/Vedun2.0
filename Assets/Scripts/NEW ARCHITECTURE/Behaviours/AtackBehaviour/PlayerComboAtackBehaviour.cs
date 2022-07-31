@@ -1,19 +1,25 @@
 ﻿using StarterAssets;
 using System;
+using System.Collections;
+using UnityEngine;
 
 public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState<AtackStates>
     {
         private StarterAssetsInputs _input;
-        
+        private CharacterController _playersController;
         private PlayerAnimatorManager _animatorManager;
 
+        private float moveDistance = 1;
+        
         public event Action OnAtackEventStart;
         public event Action OnAtackEventEnd;
 
-        public PlayerComboAtackBehaviour(ICanAtack attacker, StarterAssetsInputs inputs, PlayerAnimatorManager animatorManager) : base(attacker)
+        public PlayerComboAtackBehaviour(ICanAtack attacker, StarterAssetsInputs inputs, PlayerAnimatorManager animatorManager,
+            CharacterController _controller) : base(attacker)
         {
             _input = inputs;
             _animatorManager = animatorManager;
+            _playersController = _controller;
         }
 
         public void SetState(AtackStates state)
@@ -94,16 +100,26 @@ public class PlayerComboAtackBehaviour : AtackBehaviour<ICanAtack>, ICanSetState
             _animatorManager.SetCombo();
         }
 
-        private void ResetCombo()
-        {
-            _animatorManager.ResetCombo();
-        }
-
         public void OffCombo()
         {
             OnAtackEventEnd?.Invoke();
             ResetAtackState();
             ResetCombo();
             SetState(AtackStates.DEFAULT);
+        }
+        
+        private void ResetCombo()
+        {
+            _animatorManager.ResetCombo();
+        }
+
+        public IEnumerator MoveOnAttack()
+        {
+            var lastPlayerPos = _playersController.transform.position;
+            while (Vector3.Distance(lastPlayerPos, _playersController.transform.position) < moveDistance)
+            {
+                yield return new WaitForFixedUpdate();
+                _playersController.Move(_playersController.transform.forward * Time.deltaTime);
+            }
         }
     }

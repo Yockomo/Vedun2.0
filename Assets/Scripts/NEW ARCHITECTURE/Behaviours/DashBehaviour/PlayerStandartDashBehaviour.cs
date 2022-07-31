@@ -9,6 +9,8 @@ public class PlayerStandartDashBehaviour : DashBehaviour<IDashable>
     private Camera _mainCamera;
     
     private bool _isDashCooled;
+
+    private float _verticalOffset = 0.2f;
     
     public PlayerStandartDashBehaviour(IDashable dashable,CharacterController controller, StarterAssetsInputs inputs, 
         PlayerAnimatorManager animatorManager, Camera mainCamera) : base(dashable)
@@ -74,7 +76,8 @@ public class PlayerStandartDashBehaviour : DashBehaviour<IDashable>
         var targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                              _mainCamera.transform.eulerAngles.y;
         Vector3 targetDirection = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
+        
         _playerController.Move(targetDirection.normalized * (_dashable.DashSpeed * Time.deltaTime) +
-                               new Vector3(0.0f, _playerController.transform.position.y, 0.0f) * Time.deltaTime);
+                               new Vector3(0.0f, _playerController.transform.position.y + _verticalOffset , 0.0f) * Time.deltaTime);
     }
 }

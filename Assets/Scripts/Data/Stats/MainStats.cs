@@ -4,42 +4,42 @@ using UnityEngine;
 [Serializable]
 public struct MainStats
 {
-    [SerializeField] private float _health;
-    public float Health
+    [SerializeField] private int _health;
+    public int Health
     {
         get => _health;
         private set => _health = value;
     }
     
-    [SerializeField] private float _energy;
-    public float Energy
+    [SerializeField] private int _energy;
+    public int Energy
     {
         get => _energy;
         private set => _energy = value;
     }
 
-    [SerializeField] private float _strength;
-    public float Strength
+    [SerializeField] private int _strength;
+    public int Strength
     {
         get => _strength;
         private set => _strength = value;
     }
 
-    [SerializeField] private float _agility;
-    public float Agility
+    [SerializeField] private int _agility;
+    public int Agility
     {
         get => _agility;
         private set => _agility = value;
     }
 
-    [SerializeField] private float _defence;
-    public float Defence
+    [SerializeField] private int _defence;
+    public int Defence
     {
         get => _defence;
         private set => _defence = value;
     }
 
-    public MainStats(float health, float energy, float strength, float agility, float defence) : this()
+    public MainStats(int health, int energy, int strength, int agility, int defence) : this()
     {
         Health = health;
         Energy = energy;
@@ -48,27 +48,27 @@ public struct MainStats
         Defence = defence;
     }
 
-    public void ChangeHealthStat(float value) 
+    public void ChangeHealthStat(int value) 
     {
         Health += value;
     }
 
-    public void ChangeEnergyStat(float value)
+    public void ChangeEnergyStat(int value)
     {
         Energy += value;
     }
 
-    public void ChangeStrength(float value)
+    public void ChangeStrength(int value)
     {
         Strength += value;
     }
 
-    public void ChangeAgilityStat(float value)
+    public void ChangeAgilityStat(int value)
     {
         Agility += value;
     }
 
-    public void ChangeDefenceStat(float value)
+    public void ChangeDefenceStat(int value)
     {
         Defence += value;
     }

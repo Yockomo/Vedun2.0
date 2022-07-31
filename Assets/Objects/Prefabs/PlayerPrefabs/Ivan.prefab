@@ -2440,12 +2440,12 @@ GameObject:
   - component: {fileID: 4860517823620876514}
   - component: {fileID: 9212772854674117778}
   - component: {fileID: 400264146}
+  - component: {fileID: 7273132385319124988}
   - component: {fileID: 7602602102160686759}
   - component: {fileID: 596610616}
   - component: {fileID: 400264145}
   - component: {fileID: 1017710396374142706}
   - component: {fileID: 5352756916088012422}
-  - component: {fileID: 2024063962354153093}
   - component: {fileID: 841172110}
   m_Layer: 3
   m_Name: Ivan
@@ -2642,6 +2642,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5d5e7f7b441594bac781305b717e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7273132385319124988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212772854674117790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757c7d9583c646439be9e6606924f387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7602602102160686759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2654,7 +2666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e306c2ceb5244c058587b7c32ba90144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 100
 --- !u!114 &596610616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2718,21 +2729,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0fd72ebb1e4d868323ac49e88284fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2024063962354153093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9212772854674117790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e3c6947bd54d22a89084dc3746f300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayToMove: 0.3
-  moveDistance: 1
-  _attackSpeed: 4
+  mainStats:
+    _health: 150
+    _energy: 100
+    _strength: 5
+    _agility: 7
+    _defence: 4
 --- !u!114 &841172110
 MonoBehaviour:
   m_ObjectHideFlags: 0

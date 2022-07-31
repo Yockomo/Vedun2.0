@@ -1,11 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class AnimationEvents : MonoBehaviour
 {
     public event Action NextComboAtackEvent;
     public event Action OffComboEvent;
-    public event Action MoveOnAtackEvent;
+
+    public event Func<IEnumerator> MoveOnAtackCoroutineEvent;
 
     public void NextComboAtack()
     {
@@ -17,8 +19,8 @@ public class AnimationEvents : MonoBehaviour
         OffComboEvent?.Invoke();
     }
 
-    public void MoveOnAtack()
+    public void AttackOnMove()
     {
-        MoveOnAtackEvent?.Invoke();
+        StartCoroutine(MoveOnAtackCoroutineEvent?.Invoke());
     }
 }

@@ -11,13 +11,15 @@ public class DamageDealer : MonoBehaviour
 
     private int damage;
     
-    private void Start() {
+    private void Start() 
+    {
         if (basicAxeStats != null && basicPlayerStats != null) {
             damage = RecalculateDamage();
         }
     }
 
-    public int RecalculateDamage() {
+    public int RecalculateDamage() 
+    {
         return basicAxeStats.Damage + basicPlayerStats.Strength;
     }
 
