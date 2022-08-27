@@ -3,76 +3,37 @@ using UnityEngine;
 
 public class CharacterSumStatsComponent : MonoBehaviour, IMainStatsContainer
 {
-    private List<MainStats> _allMainStats = new List<MainStats>(5);
+    private List<MainStats> _allMainStats = new List<MainStats>(8);
+
+    private MainStats _currentMainStat;
+    public MainStats CurrentMainStat => _currentMainStat;
     
-    public void IncludeMainStat(MainStats mainStats)
+    public void AddToSumMainStats(MainStats mainStat)
     {
-        _allMainStats.Add(mainStats);
-    }
-
-    public int GetCurrentMaxHealthSum()
-    {
-        var sum = 0;
-        foreach (var stat in _allMainStats)
+        if (AllStatContain(mainStat))
         {
-            sum += stat.Health;
+            _allMainStats.Add(mainStat);
+            _currentMainStat += mainStat;
         }
-
-        return sum;
     }
 
-    public int GetCurrentMaxEnergySum()
+    public void RemoveFromSumMainStats(MainStats mainStat)
     {
-        var sum = 0;
-        foreach (var stat in _allMainStats)
+        if (AllStatContain(mainStat))
         {
-            sum += stat.Energy;
+            _allMainStats.Remove(mainStat);
+            _currentMainStat -= mainStat;
         }
-
-        return sum;
     }
 
-    public int GetCurrentStrengthSum()
+    private bool AllStatContain(MainStats mainStat)
     {
-        var sum = 0;
-        foreach (var stat in _allMainStats)
-        {
-            sum += stat.Strength;
-        }
-
-        return sum;
-    }
-
-    public int GetCurrentAgilitySum()
-    {
-        var sum = 0;
-        foreach (var stat in _allMainStats)
-        {
-            sum += stat.Agility;
-        }
-
-        return sum;
-    }
-
-    public int GetCurrentDefenceSum()
-    {
-        var sum = 0;
-        foreach (var stat in _allMainStats)
-        {
-            sum += stat.Defence;
-        }
-
-        return sum;
-    }
-
-    public MainStats GetCurrentMainStats()
-    {
-        return new MainStats(GetCurrentMaxEnergySum(), GetCurrentMaxEnergySum(), GetCurrentStrengthSum(),
-            GetCurrentAgilitySum(), GetCurrentDefenceSum());
+        return !_allMainStats.Contains(mainStat);
     }
 }
 
 public interface IMainStatsContainer
 {
-    void IncludeMainStat(MainStats mainStats);
+    void AddToSumMainStats(MainStats mainStats);
+    void RemoveFromSumMainStats(MainStats mainStats);
 }

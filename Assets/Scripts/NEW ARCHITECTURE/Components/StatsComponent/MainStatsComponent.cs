@@ -2,19 +2,11 @@
 
 public class MainStatsComponent : MonoBehaviour, IActorsMainStats
 {
-    public Actor Actor { get; set; }
-    
-    [SerializeField] private MainStats mainStats;
+    [SerializeField] private MainStats _mainStats;
     public MainStats ActorsMainStats 
     {
-        get
-        {
-            return mainStats;
-        }
-        
-        set
-        {
-        } 
+        get => _mainStats;
+        set{}
     }
 
     private Health _actorsHealthComponent;
@@ -25,14 +17,14 @@ public class MainStatsComponent : MonoBehaviour, IActorsMainStats
         if (TryGetComponent<Health>(out var healthComponent))
         {
             _actorsHealthComponent = healthComponent;
-            _actorsHealthComponent.SetFullHealthValue(mainStats.Health);
+            _actorsHealthComponent.SetFullHealthValue(_mainStats.Health);
         }
         else
             Debug.LogError("There is no HealthComponent on " + gameObject.name);
 
         if (TryGetComponent<IMainStatsContainer>(out var sumStatsContainer))
         {
-            sumStatsContainer.IncludeMainStat(mainStats);
+            sumStatsContainer.AddToSumMainStats(_mainStats);
         }
     }
 }

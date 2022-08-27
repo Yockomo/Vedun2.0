@@ -8,35 +8,35 @@ public struct MainStats
     public int Health
     {
         get => _health;
-        private set => _health = value;
+        set => _health = value >= 0 ? value : _health;
     }
     
     [SerializeField] private int _energy;
     public int Energy
     {
         get => _energy;
-        private set => _energy = value;
+        set => _energy = value >= 0 ? value : _energy;
     }
 
     [SerializeField] private int _strength;
     public int Strength
     {
-        get => _strength;
-        private set => _strength = value;
+        get => _strength; 
+        set => _strength = value >= 0 ? value : _strength;
     }
 
     [SerializeField] private int _agility;
     public int Agility
     {
-        get => _agility;
-        private set => _agility = value;
+        get => _agility; 
+        set => _agility = value >= 0 ? value : _agility;
     }
 
     [SerializeField] private int _defence;
     public int Defence
     {
         get => _defence;
-        private set => _defence = value;
+        set => _defence = value >= 0 ? value : _defence;
     }
 
     public MainStats(int health, int energy, int strength, int agility, int defence) : this()
@@ -48,28 +48,25 @@ public struct MainStats
         Defence = defence;
     }
 
-    public void ChangeHealthStat(int value) 
+    public static MainStats operator +(MainStats firstStat, MainStats secondStat)
     {
-        Health += value;
-    }
+        var health = firstStat.Health + secondStat.Health;
+        var energy = firstStat.Energy + secondStat.Energy;
+        var strength = firstStat.Strength + secondStat.Strength;
+        var agility = firstStat.Agility + secondStat.Agility;
+        var defence = firstStat.Defence + secondStat.Defence;
 
-    public void ChangeEnergyStat(int value)
+        return new MainStats(health,energy,strength,agility,defence);
+    }    
+    
+    public static MainStats operator -(MainStats firstStat, MainStats secondStat)
     {
-        Energy += value;
-    }
+        var health = firstStat.Health - secondStat.Health;
+        var energy = firstStat.Energy - secondStat.Energy;
+        var strength = firstStat.Strength - secondStat.Strength;
+        var agility = firstStat.Agility - secondStat.Agility;
+        var defence = firstStat.Defence - secondStat.Defence;
 
-    public void ChangeStrength(int value)
-    {
-        Strength += value;
-    }
-
-    public void ChangeAgilityStat(int value)
-    {
-        Agility += value;
-    }
-
-    public void ChangeDefenceStat(int value)
-    {
-        Defence += value;
+        return new MainStats(health,energy,strength,agility,defence);
     }
 }

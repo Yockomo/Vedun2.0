@@ -27,7 +27,6 @@ public class ActorWithMainStats : Actor, IHaveMainStats
         if (TryGetComponent<IActorsMainStats>(out var actorsMainStats))
         {
             _actorsMainStats = actorsMainStats;
-            _actorsMainStats.Actor = this;   
         }
         else
             Debug.LogError("There is no MainStatsComponent on" +gameObject.name);
